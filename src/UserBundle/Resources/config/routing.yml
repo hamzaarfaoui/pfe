@@ -1,0 +1,15 @@
+admin_index:
+    path:     /admin
+    defaults: { _controller: UserBundle:Default:adminIndex }
+    
+fournisseur_index:
+    path:     /fournisseur
+    defaults: { _controller: UserBundle:Default:fournisseurIndex }
+    
+pharmacie_index:
+    path:     /pharmacie
+    defaults: { _controller: UserBundle:Default:pharmacieIndex }    
+
+client_index:
+    path:     /client
+    defaults: { _controller: UserBundle:Default:clientIndex } 
