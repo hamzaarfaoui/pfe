@@ -2,12 +2,27 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>{% block title %}{% endblock %}</title>
+        {% include 'includes/css.html.twig' %}
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="main-wrapper">
+            {% include 'includes/header.html.twig' %}
+            {% include 'includes/sidebar.html.twig' %}
+            <div class="page-wrapper">
+                <div class="container-fluid">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% include 'includes/js.html.twig' %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

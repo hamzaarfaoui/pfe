@@ -35,7 +35,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         }, $roles);
         // If is a admin or super admin we redirect to the backoffice area
         if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true)){
-            $redirection = new RedirectResponse($this->router->generate('admin__index'));
+            $redirection = new RedirectResponse($this->router->generate('admin_index'));
         }elseif (in_array('ROLE_FOURNISSEUR', $rolesTab, true)){
             $redirection = new RedirectResponse($this->router->generate('fournisseur_index'));
         }elseif (in_array('ROLE_PHARMACIE_CLIENT', $rolesTab, true)){

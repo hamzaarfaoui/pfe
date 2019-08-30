@@ -1,0 +1,42 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form class="form-horizontal m-t-20" id="loginform" action="{{ path("fos_user_security_check") }}" method="post">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+    <div class="row p-b-30">
+        <div class="col-12">
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                </div>
+                {#<label for="username">{{ 'security.login.username'|trans }}</label>#}
+                <input class="form-control form-control-lg" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+            </div>
+            {#<label for="password">{{ 'security.login.password'|trans }}</label>#}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                </div>
+                <input class="form-control form-control-lg" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
+            </div>
+
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        </div>
+    </div>
+    <div class="row border-top border-secondary">
+        <div class="col-12">
+            <div class="form-group">
+                <div class="p-t-20">
+                    <input class="btn btn-success float-right" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
