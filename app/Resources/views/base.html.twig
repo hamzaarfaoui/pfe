@@ -18,11 +18,22 @@
             {% include 'includes/sidebar.html.twig' %}
             <div class="page-wrapper">
                 <div class="container-fluid">
-                    {% block body %}{% endblock %}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title m-b-0">{% block page_title %}{% endblock %}</h5>
+                                    {% block body %}{% endblock %}
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        {% include 'includes/js.html.twig' %}
-        {% block javascripts %}{% endblock %}
+    </div>
+    {% include 'includes/js.html.twig' %}
+    {% block javascripts %}{% endblock %}
     </body>
 </html>

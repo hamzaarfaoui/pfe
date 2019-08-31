@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block page_title %}Médicaments{% endblock %}
+{% block body %}
+
+    <table id="zero_config" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantite</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicament in medicaments %}
+            <tr>
+                <td><a href="{{ path('fournisseur_medicaments_show', { 'id': medicament.id }) }}">{{ medicament.id }}</a></td>
+                <td>{{ medicament.name }}</td>
+                <td>{{ medicament.description }}</td>
+                <td>{{ medicament.price }}</td>
+                <td>{{ medicament.quantite }}</td>
+                <td>{% if medicament.createdAt %}{{ medicament.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if medicament.updatedAt %}{{ medicament.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fournisseur_medicaments_show', { 'id': medicament.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fournisseur_medicaments_edit', { 'id': medicament.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fournisseur_medicaments_new') }}">Create a new medicament</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block page_title %}Nouvel utilisateur{% endblock %}
+{% block body %}
+
+    {{ form_start(form) }}
+        <div class="form-group row">
+            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder' : 'Username'} }) }}
+        </div>
+        <div class="form-group row">
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder' : 'E-mail'} }) }}
+        </div>
+        <div class="form-group row">
+            {{ form_widget(form.password, { 'attr': {'class': 'form-control', 'placeholder' : 'Mot de passe'} }) }}
+        </div>
+        <div class="form-group row">
+            <select name="roles" class="form-control">
+                <option value="ROLE_FOURNISSEUR">Fournisseur</option>
+                <option value="ROLE_PHARMACIE_CLIENT">Pharmacie client</option>
+                <option value="ROLE_CLIENT">Client</option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-info" value="Enregistrer" />
+    {{ form_end(form) }}
+{% endblock %}

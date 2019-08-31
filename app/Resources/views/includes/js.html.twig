@@ -23,3 +23,30 @@
 <script src="{{ asset('assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
 <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
 <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
+<script src="{{ asset('assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
+<script src="{{ asset('assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
+<script src="{{ asset('assets/extra-libs/DataTables/datatables.min.js') }}"></script>
+<script>
+    /****************************************
+     *       Basic Table                   *
+     ****************************************/
+    $('#zero_config').DataTable({
+        "scrollCollapse": true,
+        "paging": true,
+       "language": {
+            "zeroRecords": "Aucun résultat trouvé",
+            "infoEmpty": "Aucune données trouvé",
+            "lengthMenu": "Afficher _MENU_ lignes",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "loadingRecords": "Chargement...",
+            "processing": "Processing...",
+            "info": "Affichage de _START_ à _END_ sur _TOTAL_ lignes",
+            "paginate": {
+                "first": "Premier",
+                "last": "Dérnier",
+                "next": ">>",
+                "previous": "<<"
+            }   ,
+        "search": "Recherche:"}, 
+    });
+</script>

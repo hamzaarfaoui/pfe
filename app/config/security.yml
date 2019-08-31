@@ -40,8 +40,8 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }        
         - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }        
-        - { path: ^/fournisseur/, role: ROLE_FOURNISSEUR }
-        - { path: ^/fournisseur, role: ROLE_FOURNISSEUR }
+        - { path: ^/fournisseur/, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_FOURNISSEUR] }
+        - { path: ^/fournisseur, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_FOURNISSEUR]}
         - { path: ^/pharmacie/, role: ROLE_PHARMACIE_CLIENT }
         - { path: ^/pharmacie, role: ROLE_PHARMACIE_CLIENT }
         - { path: ^/client/, role: ROLE_CLIENT }

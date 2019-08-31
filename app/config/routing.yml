@@ -1,3 +1,11 @@
+work_medicaments:
+    resource: "@WorkBundle/Controller/MedicamentsController.php"
+    type:     annotation
+
+user_user:
+    resource: "@UserBundle/Controller/UserController.php"
+    type:     annotation
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
