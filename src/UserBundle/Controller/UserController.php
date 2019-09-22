@@ -48,6 +48,14 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $user->setRoles(array($request->get('roles')));
+            $options = [
+                'cost' => 11,
+                'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+            ];
+            $pass = $request->get('motdepasse');
+            $password = password_hash($request->get('motdepasse'), PASSWORD_BCRYPT, $options);
+            $user->setPassword($password);
+            $user->setEnabled(1);
             $em->persist($user);
             $em->flush();
 

@@ -1,3 +1,7 @@
+work_fournisseurs:
+    resource: "@WorkBundle/Controller/FournisseursController.php"
+    type:     annotation
+
 work_medicaments:
     resource: "@WorkBundle/Controller/MedicamentsController.php"
     type:     annotation
