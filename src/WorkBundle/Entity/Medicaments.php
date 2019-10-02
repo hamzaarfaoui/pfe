@@ -20,6 +20,18 @@ class Medicaments
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Pharmacie", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $pharmacie;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Fournisseurs", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $founisseur;
 
     /**
      * @var string
@@ -48,6 +60,13 @@ class Medicaments
      * @ORM\Column(name="quantite", type="integer", nullable=true)
      */
     private $quantite;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="qteFr", type="integer", nullable=true)
+     */
+    private $qteFr;
 
     /**
      * @var \DateTime
@@ -217,5 +236,76 @@ class Medicaments
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set qteFr
+     *
+     * @param integer $qteFr
+     *
+     * @return Medicaments
+     */
+    public function setQteFr($qteFr)
+    {
+        $this->qteFr = $qteFr;
+
+        return $this;
+    }
+
+    /**
+     * Get qteFr
+     *
+     * @return integer
+     */
+    public function getQteFr()
+    {
+        return $this->qteFr;
+    }
+
+    /**
+     * Set pharmacie
+     *
+     * @param \WorkBundle\Entity\Pharmacie $pharmacie
+     *
+     * @return Medicaments
+     */
+    public function setPharmacie(\WorkBundle\Entity\Pharmacie $pharmacie = null)
+    {
+        $this->pharmacie = $pharmacie;
+
+        return $this;
+    }
+
+    /**
+     * Get pharmacie
+     *
+     * @return \WorkBundle\Entity\Pharmacie
+     */
+    public function getPharmacie()
+    {
+        return $this->pharmacie;
+    }
+
+    /**
+     * Set founisseur
+     *
+     * @param \WorkBundle\Entity\Fournisseurs $founisseur
+     *
+     * @return Medicaments
+     */
+    public function setFounisseur(\WorkBundle\Entity\Fournisseurs $founisseur = null)
+    {
+        $this->founisseur = $founisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get founisseur
+     *
+     * @return \WorkBundle\Entity\Fournisseurs
+     */
+    public function getFounisseur()
+    {
+        return $this->founisseur;
+    }
+}

@@ -20,6 +20,20 @@ class CommandesClient
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Medicaments", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $medicament;
+    
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $client;
 
     /**
      * @var array
@@ -155,5 +169,52 @@ class CommandesClient
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set medicament
+     *
+     * @param \WorkBundle\Entity\Medicaments $medicament
+     *
+     * @return CommandesClient
+     */
+    public function setMedicament(\WorkBundle\Entity\Medicaments $medicament = null)
+    {
+        $this->medicament = $medicament;
+
+        return $this;
+    }
+
+    /**
+     * Get medicament
+     *
+     * @return \WorkBundle\Entity\Medicaments
+     */
+    public function getMedicament()
+    {
+        return $this->medicament;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \UserBundle\Entity\User $client
+     *
+     * @return CommandesClient
+     */
+    public function setClient(\UserBundle\Entity\User $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+}

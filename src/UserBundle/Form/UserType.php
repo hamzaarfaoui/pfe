@@ -19,8 +19,7 @@ class UserType extends AbstractType
     {
         
         $builder->add('username')
-                ->add('email', EmailType::class)
-                ->add('password', PasswordType::class);
+                ->add('email', EmailType::class);
     }
 /**
      * {@inheritdoc}

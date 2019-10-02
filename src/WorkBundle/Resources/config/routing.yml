@@ -1,3 +1,19 @@
 work_homepage:
     path:     /
     defaults: { _controller: WorkBundle:Default:index }
+    
+commandes_clients:
+    path:     /commandes_clients
+    defaults: { _controller: WorkBundle:Default:commandesClients }
+    
+medicaments_pharmacies:
+    path:     /medicaments_pharmacies
+    defaults: { _controller: WorkBundle:Default:medicamentsPharmacie }    
+    
+commander:
+    path:     /commander/{id}
+    defaults: { _controller: WorkBundle:Default:commande }    
+    
+commande_ph:
+    path:     /commande_ph/{id}
+    defaults: { _controller: WorkBundle:Default:pharmaciePasseCommande }        

@@ -20,6 +20,12 @@ class Fournisseurs
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
 
     /**
      * @var string
@@ -93,5 +99,28 @@ class Fournisseurs
     {
         return $this->prenom;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Fournisseurs
+     */
+    public function setUser(\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

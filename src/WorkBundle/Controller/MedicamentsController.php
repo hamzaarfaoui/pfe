@@ -42,9 +42,11 @@ class MedicamentsController extends Controller
         $medicament = new Medicaments();
         $form = $this->createForm('WorkBundle\Form\MedicamentsType', $medicament);
         $form->handleRequest($request);
+        $fournisseur = $em->getRepository('WorkBundle:Fournisseurs')->findOneBy(array('user' => $this->getUser()));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $medicament->setFounisseur($fournisseur);
             $em->persist($medicament);
             $em->flush();
 

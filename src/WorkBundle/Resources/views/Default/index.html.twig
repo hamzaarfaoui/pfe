@@ -1,1 +1,23 @@
-Hello World!
+{% extends 'front.html.twig' %}
+{% block page_title %}Médicaments{% endblock %}
+{% block body %}
+    <br><br>
+    <div class="container">
+        <div class="row">
+            {% for med in medicaments %}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                    <img src="{{ asset('drug.png') }}" alt="Boats at Phi Phi, Thailand">
+                    <div class="caption">
+                        <p><b>{{ med.name }}</b></p>
+                        <p><b>{{ med.price }} TND</b></p>
+                        {% if app.user %}
+                        <p><a href="{{ path('commander', {id:med.id}) }}" class="btn btn-primary" role="button">Acheter</a></p>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

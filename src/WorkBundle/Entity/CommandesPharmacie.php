@@ -20,6 +20,26 @@ class CommandesPharmacie
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Pharmacie", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $pharmacie;
+    
+    
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Medicaments", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $medicament;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Fournisseurs", cascade={"remove", "persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $fournisseur;
 
     /**
      * @var array
@@ -155,5 +175,76 @@ class CommandesPharmacie
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set pharmacie
+     *
+     * @param \WorkBundle\Entity\Pharmacie $pharmacie
+     *
+     * @return CommandesPharmacie
+     */
+    public function setPharmacie(\WorkBundle\Entity\Pharmacie $pharmacie = null)
+    {
+        $this->pharmacie = $pharmacie;
+
+        return $this;
+    }
+
+    /**
+     * Get pharmacie
+     *
+     * @return \WorkBundle\Entity\Pharmacie
+     */
+    public function getPharmacie()
+    {
+        return $this->pharmacie;
+    }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \WorkBundle\Entity\Fournisseurs $fournisseur
+     *
+     * @return CommandesPharmacie
+     */
+    public function setFournisseur(\WorkBundle\Entity\Fournisseurs $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \WorkBundle\Entity\Fournisseurs
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
+    }
+
+    /**
+     * Set medicament
+     *
+     * @param \WorkBundle\Entity\Medicaments $medicament
+     *
+     * @return CommandesPharmacie
+     */
+    public function setMedicament(\WorkBundle\Entity\Medicaments $medicament = null)
+    {
+        $this->medicament = $medicament;
+
+        return $this;
+    }
+
+    /**
+     * Get medicament
+     *
+     * @return \WorkBundle\Entity\Medicaments
+     */
+    public function getMedicament()
+    {
+        return $this->medicament;
+    }
+}

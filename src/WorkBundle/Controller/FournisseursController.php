@@ -30,6 +30,24 @@ class FournisseursController extends Controller
             'fournisseurs' => $fournisseurs,
         ));
     }
+    
+    /**
+     * Lists all fournisseur entities.
+     *
+     * @Route("/commandes_pharmacies", name="commandes_pharmacies")
+     * @Method("GET")
+     */
+    public function commandesPharmaciesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $fournisseur = $em->getRepository('WorkBundle:Fournisseurs')->findOneBy(array('user' => $this->getUser()));
+        $comandes = $em->getRepository('WorkBundle:CommandesPharmacie')->findBy(array('fournisseur' => $fournisseur));
+
+        return $this->render('WorkBundle:Default:commandesPharmacies.html.twig',array(
+            'comandes' => $comandes
+        ));
+    }
 
     /**
      * Creates a new fournisseur entity.

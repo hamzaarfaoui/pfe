@@ -6,6 +6,8 @@ use UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use UserBundle\Form\UserType;
+use WorkBundle\Entity\Pharmacie;
+use WorkBundle\Entity\Fournisseurs;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -31,7 +33,7 @@ class UserController extends Controller
             'users' => $users,
         ));
     }
-
+    
     /**
      * Creates a new user entity.
      *
@@ -48,15 +50,27 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $user->setRoles(array($request->get('roles')));
+            
             $options = [
                 'cost' => 11,
-                'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+                'salt' => random_bytes(22),
             ];
-            $pass = $request->get('motdepasse');
             $password = password_hash($request->get('motdepasse'), PASSWORD_BCRYPT, $options);
             $user->setPassword($password);
             $user->setEnabled(1);
             $em->persist($user);
+            if($request->get('roles') == 'ROLE_PHARMACIE_CLIENT'){
+                $pharmacie = new Pharmacie();
+                $pharmacie->setName($form['username']->getData());
+                $pharmacie->setUser($user);
+                $em->persist($pharmacie);
+            }
+            elseif($request->get('roles') == 'ROLE_FOURNISSEUR'){
+                $fournisseur = new Fournisseurs();
+                $fournisseur->setNom($form['username']->getData());
+                $fournisseur->setUser($user);
+                $em->persist($fournisseur);
+            }
             $em->flush();
 
             return $this->redirectToRoute('admin_users_show', array('id' => $user->getId()));
