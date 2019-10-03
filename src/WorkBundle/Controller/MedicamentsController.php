@@ -23,10 +23,16 @@ class MedicamentsController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $medicaments_list = array();
         $medicaments = $em->getRepository('WorkBundle:Medicaments')->findAll();
+        foreach ($medicaments as $medicament){
+            if($medicament->getPharmacie()->getId()){
+                $medicaments_list[] = $medicament;
+            }
+        }
 
         return $this->render('medicaments/index.html.twig', array(
-            'medicaments' => $medicaments,
+            'medicaments' => $medicaments_list,
         ));
     }
 

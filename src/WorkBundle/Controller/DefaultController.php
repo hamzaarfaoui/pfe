@@ -68,10 +68,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $pharmacie = $em->getRepository('WorkBundle:Pharmacie')->findOneBy(array('user' => $this->getUser()));
         $medicament = $em->getRepository('WorkBundle:Medicaments')->find($id);
+        $medicament->setPharmacie($pharmacie);
         $commande = new CommandesPharmacie();
         $commande->setMedicament($medicament);
         $commande->setFournisseur($medicament->getFounisseur());
         $commande->setPharmacie($pharmacie);
+        $em->persist($medicament);
         $em->persist($commande);
         $em->persist($medicament);
         $em->flush();

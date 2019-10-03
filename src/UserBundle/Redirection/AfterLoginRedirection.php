@@ -40,8 +40,8 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             $redirection = new RedirectResponse($this->router->generate('fournisseur_index'));
         }elseif (in_array('ROLE_PHARMACIE_CLIENT', $rolesTab, true)){
             $redirection = new RedirectResponse($this->router->generate('pharmacie_index'));
-        }elseif (in_array('ROLE_CLIENT', $rolesTab, true)){
-            $redirection = new RedirectResponse($this->router->generate('client_index'));
+        }else{
+            $redirection = new RedirectResponse($this->router->generate('work_homepage'));
         }
         
         
