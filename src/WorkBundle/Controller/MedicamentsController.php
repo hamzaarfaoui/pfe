@@ -23,7 +23,6 @@ class MedicamentsController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $medicaments = $em->getRepository('WorkBundle:Medicaments')->findAll();
 
         return $this->render('medicaments/index.html.twig', array(
@@ -40,12 +39,13 @@ class MedicamentsController extends Controller
     public function newAction(Request $request)
     {
         $medicament = new Medicaments();
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('WorkBundle\Form\MedicamentsType', $medicament);
         $form->handleRequest($request);
         $fournisseur = $em->getRepository('WorkBundle:Fournisseurs')->findOneBy(array('user' => $this->getUser()));
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            
             $medicament->setFounisseur($fournisseur);
             $em->persist($medicament);
             $em->flush();

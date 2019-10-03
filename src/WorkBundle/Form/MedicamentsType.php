@@ -13,7 +13,7 @@ class MedicamentsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('price')->add('quantite')->add('createdAt')->add('updatedAt');
+        $builder->add('name')->add('description')->add('price')->add('quantite');
     }/**
      * {@inheritdoc}
      */
